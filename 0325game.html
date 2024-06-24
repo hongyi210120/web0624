@@ -1,0 +1,48 @@
+<html>
+<head>
+<script>
+  function get(x){
+    return document.getElementById(x);
+    }
+  function getRnd(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+  }
+  function start(){
+    get("btnstart").style.display="none";
+    min="0"; max="100";
+    ans=getRnd(min,max);
+    get("min").innerHTML=min;
+    get("max").innerHTML=max;
+    get("user").max=max;
+    get("user").min=min;
+    get("game").style.display="block";
+  }
+  function gusse(){
+    user=praseInt(get("user").value);
+    if(user > max || user < min){
+      alert("超過範圍");
+    }else if(user==ans){
+      alert("爆了!");
+      get("game").style.display="block";
+      get("btnstart").style.display="none";
+  }else if(user>ans){
+      max=user;
+      get("max").innerHTML=max;
+      get("user").max=max;
+  }else if(user<ans){
+      min=user;
+      get("min").innerHTML=min;
+      get("user").min=min;
+    }
+    get("user").value="";
+  }
+</script>
+</head>
+<body>
+  <button id="btnstart" onclick="start();">開始</button>
+  <div id="game" style="display:none;">
+  <span id="min"></span> &lt; <input type="number" id="user"> &lt; <span id="max"></span>
+  <button onclick="gusse();">sure</button>
+  
+</body>
+</html>

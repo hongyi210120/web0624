@@ -1,0 +1,78 @@
+<html>
+<head>
+  <style>
+  #board {
+    display:grid;
+    grid: repeat(3,80px) / repeat(4,80px) ;
+  }
+
+  </style>
+  <script>
+  function get(id){
+      return document.getElementById(id);
+    }
+    function gets(qs){
+      return Array.from(document.querySelectorAll(qs));
+    }
+  function getRnd(min,max) {
+    return Math.floor(Math.random()*(max-min+1))+min;
+    }
+  function gameStart() {
+    get("btnStart").style.display="none"
+    cards=[1,1,2,2,3,3,4,4,5,5,6,6];
+    cards.sort(function(){return Math.random()-0.5});
+    imgs=gets("img");
+    imgs.forEach(function(a,i){
+      a.src=cards[i]+".png";
+      });
+    setTimeout(function(){
+      imgs.forEach(function(a){
+        a.src="0.png";
+      });
+
+    },3000);
+    game_started=true;
+    p1=-1;p2=-1;
+  }
+  function hit(idx) {
+    if(p1==-1) {
+      p1=idx;
+      imgs[idx].src=cards[idx]+".png";
+      return;
+    }
+    if(p1==idx) return;
+    if(p2==-1){
+      p2=idx;
+      imgs[idx].src=cards[idx]+".png";
+      if(cards[p1]==cards[p2]) {
+        p1=-1;p2=-1;
+        return;
+      }
+      setTimeout(function(){
+        imgs[p1].src="0.png";
+        imgs[p2].src="0.png";
+        p1=-1;p2=-1;
+      },1000)
+      }
+  }
+
+  </script>
+</head>
+<body>
+<div id="board">
+  <img src="0.png" onclick="hit(0);">
+  <img src="0.png" onclick="hit(1);">
+  <img src="0.png" onclick="hit(2);">
+  <img src="0.png" onclick="hit(3);">
+  <img src="0.png" onclick="hit(4);">
+  <img src="0.png" onclick="hit(5);">
+  <img src="0.png" onclick="hit(6);">
+  <img src="0.png" onclick="hit(7);">
+  <img src="0.png" onclick="hit(8);">
+  <img src="0.png" onclick="hit(9);">
+  <img src="0.png" onclick="hit(10);">
+  <img src="0.png" onclick="hit(11);">
+  </div>
+  <button id="btnStart" onclick="gameStart();">開始</button>
+</body>
+</html>

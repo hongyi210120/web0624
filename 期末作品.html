@@ -1,0 +1,91 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>10604李竑毅 期末作品-Pacman</title>
+  <style>
+  body {
+    font-family: Arial;
+    text-align: center;
+  }
+  #board {
+    width: 400px;
+    height: 400px;
+    border: 2px solid black;
+    margin: 20px auto;
+    position: relative;
+  }
+  .pacman, .enemy {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+  }
+  .pacman {
+    background-color: yellow;
+  }
+  .enemy {
+    background-color: red;
+  }  
+  </style>
+  <script>
+    function get(id) {
+      return document.getElementById(id);
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const board = get("board");
+      const pacman = get("pacman");
+      const enemy1 = get("enemy1");
+      const enemy2 = get("enemy2");
+      
+      let pacmanX = 200;
+      let pacmanY = 200;
+      let enemy1X = 50;
+      let enemy1Y = 50;
+      let enemy2X = 300;
+      let enemy2Y = 300;
+
+      pacman.style.left = pacmanX + "px";
+      pacman.style.top = pacmanY + "px";
+      enemy1.style.left = enemy1X + "px";
+      enemy1.style.top = enemy1Y + "px";
+      enemy2.style.left = enemy2X + "px";
+      enemy2.style.top = enemy2Y + "px";
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowUp") {
+          pacmanY -= 10;
+        } else if (e.key === "ArrowDown") {
+          pacmanY += 10;
+        } else if (e.key === "ArrowLeft") {
+          pacmanX -= 10;
+        } else if (e.key === "ArrowRight"){
+          pacmanX += 10;
+        } 
+        
+        
+        pacman.style.left = pacmanX + "px";
+        pacman.style.top = pacmanY + "px";
+
+        checkCollision(pacmanX, pacmanY, enemy1X, enemy1Y);
+        checkCollision(pacmanX, pacmanY, enemy2X, enemy2Y);
+      });
+
+      function checkCollision(px, py, ex, ey) {
+        if (Math.abs(px - ex) < 15 && Math.abs(py - ey) < 15) {
+          alert("Game Over!");
+          location.reload(); 
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Pacman</h1>
+  <div id="board">
+    <div id="pacman" class="pacman"></div>
+    <div id="enemy1" class="enemy"></div>
+    <div id="enemy2" class="enemy"></div>
+  </div>
+</body>
+</html>

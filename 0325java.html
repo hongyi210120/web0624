@@ -1,0 +1,36 @@
+<html>
+<head>
+  <script>
+  function get(id){ //自訂函式
+    return document.getElementById(id)
+    }
+
+  function add(){
+    x=parseInt(get("a1").value);
+    y=parseInt(get("a2").value);
+
+    get("ans").value=x+y;
+    }
+
+
+  //<input type="text" placeholder="請輸入帳號" maxlength="8" size="20" value="12345abc"><br>
+  //<input type="password" placeholder="請輸入密碼"><br>
+  //<input type="number" placeholder="請輸入數字" max=100 min=10><br>
+
+  //<input type="range" max=100 min=1><br>
+  //<input type="date" max="2024-03-31" min="2024-02-26"><br>
+  //<input type="datetime-local" value="2024-03-25 08:36"><br>
+  //<input type="color" value="##FF0000"><br>
+  //<input type="file"><br>
+  //<input type="search"><br>
+  //<input type="url"><br>
+  //parseInt parseFloat
+  </script>
+
+</head>
+<body>
+  <input type="number" id="a1">+<input type="number" id="a2">
+  <button onclick="add();">=</button> <input type="number" id="ans" readonly><br>
+
+</body>
+</html>

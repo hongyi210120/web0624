@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <style>
+    #universe {
+      width:600px;
+      height:600px;
+      background:url("space.jpg");
+      animation:sp_move 2s linear infinite;
+      position:relative;
+    }
+    @keyframes sp_move {
+      0%{background-position-y:0px;}
+      100%{background-position-y:213px;}
+    }
+    #ship {
+      width:60px;
+      height:60px;
+      position:absolute;
+    }
+    .ufo {
+      width:60px;
+      height:60px;
+      position:absolute;
+    }
+    .bullet {
+      width:3px;
+      height:5px;
+      background:red;
+      position:absolute;
+
+    }
+    </style>
+    <script>
+      function get(id) {
+        return document.getElementById(id);
+      }
+      function gets(qs) {
+        return Array.from(document.querySelectorAll(qs));
+      }
+      function getRnd(min,max) {
+        return Math.floor(Math.random()*(max-min+1))+min;
+      }
+      function gameInit() {
+        ship={w:60,h:60,x:270,y:540};
+        mydir={"ArrowDown":0,"ArrowLeft":0,"ArrowRight":0,"Arrowup":0};
+
+
+        setInterval(ship_move,1);
+        setInterval(ufo_create,1000)
+      }
+      function mykeydown(ev) {
+        ev.preventDefault();
+        if(ev.key==" ") {
+          shoot
+        }else{
+        mydir=[ev.key]=1;
+      }
+      }
+      function mykeyup(ev) {
+        ev.preventDefault();
+        mydir=[ev.key]=0;
+      }
+      function ship_move() {
+        if(mydir["ArrowDown"] && ship.y + ship.h < 600) {
+          ship.y++;
+        }else if(mydir["ArrowLeft"] && ship.x > 0) {
+          ship.x--;
+        }else if(mydir["ArrowRight"] && ship.x + ship.w < 600) {
+          ship.x++;
+        }else if(mydir["Arrowup"] && ship.y > 300) {
+          ship.y--;
+        }					
+        get("ship").style.left=ship.x+"px";
+        get("ship").style.top=ship.y+"px";
+      }
+      function ufo_create() {
+        var u=document.createElement("img");
+        u.src="ufo.png";
+        u.className="ufo";
+        u.pos={x:getRnd(0,540),y:0};
+        u.style.left=u.pos.x+"px";
+        u.move=setInterval(ufo_move,500,u)
+        get("universe").appendChild(u);
+      }
+      function ufo_move(u) {
+        if(u.pos.y>540) {
+          clearInterval(u.move);
+          u.remove();
+        }
+        u.pos.y+=getRnd(5,10);
+        u.style.top=u.pos.y+"px";
+      }
+      function shoot() {
+        var u=document.createElement("div");
+        b.className="bullet";
+        b.pos={x:ship.x+30,y:ship.y};
+        b.style.left=b.pos.x+"px";
+        b.move=setInterval(bullet_move,10,b)
+        get("universe").appendChild(b);
+      }
+      function bullet_move(b) {
+        if(b.pos.y<0) {
+          clearInterval(b.move);
+          b.remove();
+          return;
+          b.pos.y--;
+          b.style.top=b.pos.y+"px";
+        }
+
+      }
+
+
+    </script>
+
+  </head>
+  <body onload="gameInit()" onkeydown="mykeydown(event);" onkeyup="mykeyup(event);">
+    <div id="universe">
+      <img id="ship" src="plane.png">
+    </div>
+  </body>
+</html>

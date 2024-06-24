@@ -1,0 +1,103 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <title>10604李竑毅-0311note-CSS漸層</title>
+  <style>
+    div{
+      width: 200px;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+    #d1{
+      /*漸層不是顏色，不能用在color*/
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    }
+    #d2{
+      background: linear-gradient(to right,
+      hsl(0deg, 100%, 50%),hsl(30deg, 100%, 50%),hsl(60deg, 100%,50%))
+    }
+    #d3{
+      background: linear-gradient(to right, red 33%, white 33%, white 67%, blue 67%)
+    }
+    #d4{
+      background: repeating-linear-gradient(135deg, red 20%, white 25%, red 30%)
+    }
+    #d5{
+      background: repeating-linear-gradient(135deg, red 20%, white 25%, green 30%, white 35%,red 40%)
+    }
+    @keyframes kd5{
+      0%{background: repeating-linear-gradient(135deg, red 20%, white 25%, green 30%, white 35%, red 40%);}
+      25%{background: repeating-linear-gradient(135deg, green 20%,red 25%, white 30%, red 35%, green 40%);}
+      50%{background: repeating-linear-gradient(135deg, red 20%, white 25%, green 30%, white 35%, red 40%);}
+      75%{background: repeating-linear-gradient(135deg, green 20%,red 25%, white 30%, red 35%, green 40%);}
+      100%{background: repeating-linear-gradient(135deg, red 20%, white 25%, green 30%, white 35%, red 40%);}
+    }
+    #ad5{
+      animation: kd5 2s infinite;
+    }
+  
+    #r1{
+      background: radial-gradient(circle, red, white, white)
+    }
+    #r2{
+      background: repeating-radial-gradient(circle, pink 25%, white 35%, pink 45%)
+    }
+    @keyframes kr1{
+      0%{background: repeating-radial-gradient(circle, pink 25%, white 35%, pink 45%);}
+      25%{background: repeating-radial-gradient(circle, white 25%, pink 35%, white 45%);}
+      50%{background: repeating-radial-gradient(circle, pink 25%, white 35%, pink 45%);}
+      75%{background: repeating-radial-gradient(circle, white 25%, pink 35%, white 45%);}
+      100%{background: repeating-radial-gradient(circle, pink 25%, white 35%, pink 45%);}
+    }
+    #ar2{
+      animation: kr1 0.5s infinite;
+    }
+    #c1{
+      background: conic-gradient(red, yellow, green, red)      
+    }
+
+    @keyframes kc1{
+      0%{background: conic-gradient(red, yellow, green, red);}
+      25%{background: conic-gradient(yellow, green, red, yellow);}
+      50%{background: conic-gradient(green, red, yellow, green);}
+      75%{background: conic-gradient(red, yellow, green, red);}
+      100%{background: conic-gradient(yellow, green, red, yellow);}
+    }
+    #ac1{
+      animation: kc1 1.5s infinite;
+    }
+    
+    #c2{
+      background: repeating-conic-gradient(red 10%, white 15%, red 20%)
+    }
+
+    @keyframes kc2{
+     0% {background: repeating-conic-gradient(red 10%, white 15%, red 20%)}
+     50% {background: repeating-conic-gradient(white 10%, red 15%, white 20%)}
+     100% {background: repeating-conic-gradient(red 10%, white 15%, red 20%)}
+    }
+    
+    #ac2{
+      animation: kc2 0.5s linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <div id="d1"></div>
+  <div id="d2"></div>
+  <div id="d3"></div>
+  <div id="d4"></div>
+  <div id="d5"></div>
+  
+  <div id="r1"></div>
+  <div id="r2"></div>
+
+  <div id="c1"></div>
+  <div id="c2"></div>
+
+  <div id="ac1"></div>
+  <div id="ac2"></div>
+  <div id="ar2"></div>
+  <div id="ad5"></div>
+</body>
+</html>
